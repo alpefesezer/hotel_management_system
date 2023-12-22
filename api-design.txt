@@ -1,0 +1,9 @@
+../rooms
+../rooms?user={userId}
+../rooms/{roomId}
+
+
+../users
+../users/{usersId}
+../users/{usersId}/profile
+

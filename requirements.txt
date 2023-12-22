@@ -1,0 +1,7 @@
+kullanıcı kayıt olabilmeli.
+
+   "" 	  giriş yapabilmeli.
+
+kullanıcı istediği odadan rezervasyon yapabilmeli.
+
+kullanıcı rezervasyonunu hesabından kontrol edebilmeli.
