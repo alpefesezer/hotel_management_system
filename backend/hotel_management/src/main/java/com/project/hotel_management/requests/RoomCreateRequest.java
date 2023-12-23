@@ -10,4 +10,6 @@ public class RoomCreateRequest {
     int roomStorage;
     boolean isRoomFree;
     double roomPrice;
+    String description;
+    String pictureUrl;
 }

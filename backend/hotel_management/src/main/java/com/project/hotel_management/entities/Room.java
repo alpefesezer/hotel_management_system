@@ -18,6 +18,8 @@ public class Room {
     int roomStorage;
     boolean isRoomFree;
     double roomPrice;
+    String pictureUrl;
+    String description;
 
 }
 

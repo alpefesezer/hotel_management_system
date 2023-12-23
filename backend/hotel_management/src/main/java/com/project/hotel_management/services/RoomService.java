@@ -33,6 +33,8 @@ public class RoomService {
         toSave.setRoomFree(newRoomRequest.isRoomFree());
         toSave.setRoomStorage(newRoomRequest.getRoomStorage());
         toSave.setRoomPrice(newRoomRequest.getRoomPrice());
+        toSave.setDescription(newRoomRequest.getDescription());
+        toSave.setPictureUrl(newRoomRequest.getPictureUrl());
         return roomRepository.save(toSave);
     }
 
@@ -42,6 +44,8 @@ public class RoomService {
             Room toUpdate = new Room();
             toUpdate.setRoomFree(updateRoom.isRoomFree());
             toUpdate.setRoomPrice(updateRoom.getRoomPrice());
+            toUpdate.setPictureUrl(updateRoom.getPictureUrl());
+            toUpdate.setDescription(updateRoom.getDescription());
             roomRepository.save(toUpdate);
             return toUpdate;
         }
