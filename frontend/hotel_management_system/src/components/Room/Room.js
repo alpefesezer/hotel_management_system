@@ -9,23 +9,23 @@ import Typography from '@mui/material/Typography';
 export default function Room(props) {
     const {roomId, roomPrice, roomStorage, roomPicture, roomDescription} = props;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 350, maxHeight: 350 }}>
       <CardMedia
         sx={{ height: 140 }}
         image={roomPicture}
         title={roomId}
       />
-      <CardContent>
+      <CardContent sx={{backgroundColor: 'gray'}}>
         <Typography gutterBottom variant="h5" component="div">
-          {roomPrice + "TL "} ----------- {roomStorage + " people"} {roomId}
+          {"Hotel Room for " + roomStorage + " people"} {"  " + roomPrice + "TL for night"}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {roomDescription}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Book Now!</Button>
-        <Button size="small">Learn More</Button>
+      <CardActions sx={{backgroundColor: "gray"}}>
+        <Button size="small" style={{color: "white"}}>Book Now!</Button>
+        <Button size="small" style={{color: "white"}}>Learn More</Button>
       </CardActions>
     </Card>
   );

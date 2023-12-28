@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Room from "../Room/Room";
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Home(){
     const [error, setError] = useState(null);
@@ -24,10 +25,10 @@ function Home(){
     if(error){
         return <div>Error!!</div>
     }else if(!isLoaded){
-        return <div>Loading...</div>
+        return <CircularProgress color="secondary"/>
     }else {
         return(
-            <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "space-evenly"}}>
+            <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '4%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>
                 {roomList.map(room => (
                     <Room roomStorage = {room.roomStorage} roomPrice={room.roomPrice} roomId={room.id} roomPicture={room.pictureUrl} roomDescription={room.description}></Room>
                 ))}
