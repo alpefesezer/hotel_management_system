@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
         </Routes>
       </BrowserRouter>
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '10vh' }}>
       <Footer />
       </div>
     </div>
