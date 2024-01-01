@@ -8,8 +8,12 @@ import Typography from '@mui/material/Typography';
 
 export default function Room(props) {
     const {roomId, roomPrice, roomStorage, roomPicture, roomDescription} = props;
+
+    function handleClick() {
+      console.log(roomId);
+    }
   return (
-    <Card sx={{ maxWidth: 350, maxHeight: 350 }}>
+    <Card onClick={() => handleClick()} style={{cursor : 'pointer'}} sx={{ maxWidth: 350, maxHeight: 350 }}>
       <CardMedia
         sx={{ height: 140 }}
         image={roomPicture}
