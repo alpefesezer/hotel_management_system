@@ -6,7 +6,7 @@ import User from './components/User/User';
 import Login from './components/User/Login';
 import Signup from './components/User/Signup';
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom"
-import SearchBar from './components/SearchBar/SearchBar';
+import RoomPage from './components/RoomPage/RoomPage';
 
 function App() {
   return (
@@ -18,6 +18,8 @@ function App() {
         <Route exact path='/users/:userId' element={<User/>}></Route>
         <Route exact path='/login' element={<Login/>}></Route>
         <Route exact path='/signup' element={<Signup/>}></Route>
+        <Route exact path='/rooms/:roomId' element={<RoomPage />} />
+
       </Routes> 
       </BrowserRouter>
     </div>

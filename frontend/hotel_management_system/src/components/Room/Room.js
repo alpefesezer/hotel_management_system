@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Room(props) {
     const {roomId, roomPrice, roomStorage, roomPicture, roomDescription} = props;
@@ -13,6 +14,7 @@ export default function Room(props) {
       console.log(roomId);
     }
   return (
+    <NavLink to={{ pathname: '/rooms/' + roomId }} style={{ textDecoration: 'none' }}>
     <Card onClick={() => handleClick()} style={{cursor : 'pointer'}} sx={{ maxWidth: 350, maxHeight: 350 }}>
       <CardMedia
         sx={{ height: 140 }}
@@ -32,5 +34,6 @@ export default function Room(props) {
         <Button size="small" style={{color: "white"}}>Learn More</Button>
       </CardActions>
     </Card>
+    </NavLink>
   );
 }

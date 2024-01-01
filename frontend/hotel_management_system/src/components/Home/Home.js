@@ -23,7 +23,7 @@ function Home(){
     }, [])
 
     if(error){
-        return <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '4%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>
+        return <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '2%', marginBottom: '2%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>
             <Room roomStorage = {10} roomPrice={5000} roomId={0} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
             <Room roomStorage = {10} roomPrice={5000} roomId={1} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
             <Room roomStorage = {10} roomPrice={5000} roomId={2} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>

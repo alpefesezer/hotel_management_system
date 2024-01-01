@@ -11,6 +11,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Link, NavLink } from 'react-router-dom';
+import DatesPicker from '../DatesPicker/DatesPicker';
+import ControlledOpenSelect from '../Selection/Selection';
 
 export default function ButtonAppBar() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
@@ -22,8 +24,8 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1, width: '100%' }}>
-      <AppBar position="static" sx={{ color: 'white', backgroundColor: 'black' }}>
-        <Toolbar>
+      <AppBar position="static" sx={{ color: 'white', backgroundColor: 'black', height: '80px' }}>
+        <Toolbar style={{marginTop:"10px"}}>
           <IconButton
             size="medium"
             edge="start"
@@ -41,6 +43,14 @@ export default function ButtonAppBar() {
               </Button>
             </Link>
           </Typography>
+          
+          <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',display: "flex", alignItems: "center", justifyContent: "center",}}>
+          <DatesPicker label="Check In" />
+          <DatesPicker label="Check Out" />
+          <ControlledOpenSelect />
+          </div>
+
+
           <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit">Login</Button>
           </Link>
