@@ -10,7 +10,7 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -21,7 +21,9 @@ function App() {
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
         </Routes>
       </BrowserRouter>
+      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Footer />
+      </div>
     </div>
   );
 }
