@@ -16,7 +16,6 @@ import ControlledOpenSelect from '../Selection/Selection';
 
 export default function ButtonAppBar() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  let userId = 5;
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -57,7 +56,6 @@ export default function ButtonAppBar() {
           <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit">Sign Up</Button>
           </Link>
-          <NavLink to={{ pathname: '/users/' + userId }}>User</NavLink>
         </Toolbar>
       </AppBar>
 

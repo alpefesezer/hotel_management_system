@@ -23,15 +23,8 @@ function Home(){
     }, [])
 
     if(error){
-        return <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '2%', marginBottom: '2%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>
-            <Room roomStorage = {10} roomPrice={5000} roomId={0} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
-            <Room roomStorage = {10} roomPrice={5000} roomId={1} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
-            <Room roomStorage = {10} roomPrice={5000} roomId={2} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
-            <Room roomStorage = {10} roomPrice={5000} roomId={3} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
-            <Room roomStorage = {10} roomPrice={5000} roomId={4} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
-            <Room roomStorage = {10} roomPrice={5000} roomId={5} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
-
-
+        return <div>
+            Error!!!
         </div>
         
     }else if(!isLoaded){
@@ -42,7 +35,6 @@ function Home(){
                 {roomList.map(room => (
                     <Room roomStorage = {room.roomStorage} roomPrice={room.roomPrice} roomId={room.id} roomPicture={room.pictureUrl} roomDescription={room.description}></Room>
                 ))}
-                <Room roomStorage = {10} roomPrice={5000} roomId={0} roomPicture={"pictureUrl"} roomDescription={"asd"}></Room>
             </div>
         ); 
     }

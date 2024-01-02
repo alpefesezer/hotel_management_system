@@ -30,7 +30,6 @@ public class RoomService {
     public Room createRoom(RoomCreateRequest newRoomRequest) {
         Room toSave = new Room();
         toSave.setId(newRoomRequest.getId());
-        toSave.setRoomFree(newRoomRequest.isRoomFree());
         toSave.setRoomStorage(newRoomRequest.getRoomStorage());
         toSave.setRoomPrice(newRoomRequest.getRoomPrice());
         toSave.setDescription(newRoomRequest.getDescription());
@@ -42,7 +41,6 @@ public class RoomService {
         Optional<Room> room = roomRepository.findById(roomId);
         if(room.isPresent()){
             Room toUpdate = new Room();
-            toUpdate.setRoomFree(updateRoom.isRoomFree());
             toUpdate.setRoomPrice(updateRoom.getRoomPrice());
             toUpdate.setPictureUrl(updateRoom.getPictureUrl());
             toUpdate.setDescription(updateRoom.getDescription());

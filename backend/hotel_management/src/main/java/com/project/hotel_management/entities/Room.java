@@ -16,7 +16,6 @@ public class Room {
     Long id;
 
     int roomStorage;
-    boolean isRoomFree;
     double roomPrice;
     String pictureUrl;
     String description;

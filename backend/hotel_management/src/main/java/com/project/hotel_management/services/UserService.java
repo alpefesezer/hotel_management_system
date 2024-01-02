@@ -37,6 +37,8 @@ public class UserService {
             foundUser.setSurname(newUser.getSurname());
             foundUser.setPassword(newUser.getPassword());
             foundUser.setName(newUser.getName());
+            foundUser.setEmail(newUser.getEmail());
+            foundUser.setPhoneNumber(newUser.getPhoneNumber());
             userRepository.save(newUser);
             return foundUser;
         }else

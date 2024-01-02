@@ -21,12 +21,10 @@ public class Appointment {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="room_id",nullable = false)
-    @JsonIgnore
     Room room;
 
 }

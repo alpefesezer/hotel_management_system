@@ -6,10 +6,12 @@ import com.project.hotel_management.entities.User;
 import com.project.hotel_management.repos.AppointmentRepository;
 import com.project.hotel_management.requests.AppointmentCreateRequest;
 import com.project.hotel_management.requests.AppointmentUpdateRequest;
+import com.project.hotel_management.responses.AppointmentResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AppointmentService {
@@ -38,8 +40,14 @@ public class AppointmentService {
         return appointmentRepository.save(toSave);
     }
 
-    public List<Appointment> getAllAppointments() {
-        return appointmentRepository.findAll();
+    public List<AppointmentResponse> getAllAppointments(Optional<Long> userId) {
+        List<Appointment> list;
+        if(userId.isPresent()){
+            list = appointmentRepository.findByUserId(userId.get());
+        }else{
+            list = appointmentRepository.findAll();
+        }
+        return list.stream().map(AppointmentResponse::new).collect(Collectors.toList());
     }
 
     public Appointment getAppointment(Long appointmentId) {

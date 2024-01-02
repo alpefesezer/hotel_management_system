@@ -3,10 +3,12 @@ package com.project.hotel_management.controllers;
 import com.project.hotel_management.entities.Appointment;
 import com.project.hotel_management.requests.AppointmentCreateRequest;
 import com.project.hotel_management.requests.AppointmentUpdateRequest;
+import com.project.hotel_management.responses.AppointmentResponse;
 import com.project.hotel_management.services.AppointmentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/appointments")
@@ -19,8 +21,8 @@ public class AppointmentController {
     }
 
     @GetMapping
-    public List<Appointment> getAllAppointments(){
-        return appointmentService.getAllAppointments();
+    public List<AppointmentResponse> getAllAppointments(@RequestParam Optional<Long> userId){
+        return appointmentService.getAllAppointments(userId);
     }
 
     @PostMapping
