@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import RoomPage from './components/RoomPage/RoomPage';
 import Footer from './components/Footer/Footer';
 import HomeIntro from './components/HomeIntro/HomeIntro';
+import AdminPage from './components/RoomPage/AdminPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/auth/login" element ={localStorage.getItem("currentUser") != null ? <Navigate to= "/"/>: <Login/>}/>
           <Route exact path="/auth/signup" element={<Signup />} />
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
+          <Route exact path="/admin" element={<AdminPage/>}/>
         </Routes>
       </BrowserRouter>
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '10vh' }}>

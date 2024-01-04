@@ -82,6 +82,7 @@ public class SecurityConfig{
                         .requestMatchers(HttpMethod.GET, "/rooms").permitAll()
                         .requestMatchers(HttpMethod.GET, "/appointments").permitAll()
                         .requestMatchers(HttpMethod.GET, "/users").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/rooms").permitAll()
                 );
         httpSecurity.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

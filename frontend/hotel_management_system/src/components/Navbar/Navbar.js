@@ -58,6 +58,13 @@ export default function ButtonAppBar() {
           <Button className= "filter_btn" style={{color: 'gray', backgroundColor: 'white'}}>Filter</Button>
           </div>
 
+          {localStorage.getItem("userName") === "admin" ? 
+          <Link to="/admin" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Button color="inherit">Admin</Button>
+        </Link>:null
+          }
+
+
 
           {localStorage.getItem("currentUser") == null ? 
           <Link to="/auth/login" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -68,7 +75,6 @@ export default function ButtonAppBar() {
           </Link>
           }
 
-
           {localStorage.getItem("currentUser") == null ? 
           <Link to="/auth/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit">Sign Up</Button>
@@ -76,6 +82,8 @@ export default function ButtonAppBar() {
           <Link to="/auth/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit" onClick={onClick}>Log out</Button>
           </Link>}
+
+          
         </Toolbar>
       </AppBar>
 

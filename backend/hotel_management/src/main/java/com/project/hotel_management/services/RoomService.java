@@ -29,7 +29,6 @@ public class RoomService {
 
     public Room createRoom(RoomCreateRequest newRoomRequest) {
         Room toSave = new Room();
-        toSave.setId(newRoomRequest.getId());
         toSave.setRoomStorage(newRoomRequest.getRoomStorage());
         toSave.setRoomPrice(newRoomRequest.getRoomPrice());
         toSave.setDescription(newRoomRequest.getDescription());

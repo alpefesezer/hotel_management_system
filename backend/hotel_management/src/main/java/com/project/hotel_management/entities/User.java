@@ -3,6 +3,8 @@ package com.project.hotel_management.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Entity
 @Table(name="user")
 @Data
@@ -18,3 +20,4 @@ public class User {
     String email;
     String phoneNumber;
 }
+

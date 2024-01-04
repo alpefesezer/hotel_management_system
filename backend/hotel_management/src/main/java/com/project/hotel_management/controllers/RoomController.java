@@ -4,6 +4,8 @@ import com.project.hotel_management.entities.Room;
 import com.project.hotel_management.requests.RoomCreateRequest;
 import com.project.hotel_management.requests.RoomUpdateRequest;
 import com.project.hotel_management.services.RoomService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +33,9 @@ public class RoomController {
     }
 
     @PostMapping
-    public Room createRoom(@RequestBody RoomCreateRequest newRoomRequest){
-        return roomService.createRoom(newRoomRequest);
+    public ResponseEntity<String> createRoom(@RequestBody RoomCreateRequest newRoomRequest){
+        roomService.createRoom(newRoomRequest);
+        return ResponseEntity.ok("Room created successfully");
     }
 
     @PutMapping("/{roomId}")

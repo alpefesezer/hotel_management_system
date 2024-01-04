@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
 
     UserRepository userRepository;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -30,7 +31,7 @@ public class UserService {
 
     public User updateUser(Long userId, User newUser) {
         Optional<User> user = userRepository.findById(userId);
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             User foundUser = user.get();
             foundUser.setUserName(newUser.getUserName());
             foundUser.setId(newUser.getId());
@@ -41,7 +42,7 @@ public class UserService {
             foundUser.setPhoneNumber(newUser.getPhoneNumber());
             userRepository.save(newUser);
             return foundUser;
-        }else
+        } else
             return null;
     }
 
@@ -52,4 +53,6 @@ public class UserService {
     public User getUserByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
+
+
 }

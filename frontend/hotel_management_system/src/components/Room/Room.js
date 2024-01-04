@@ -15,8 +15,9 @@ export default function Room(props) {
     }
   return (
     <NavLink to={{ pathname: '/rooms/' + roomId }} style={{ textDecoration: 'none' }}>
-    <Card onClick={() => handleClick()} style={{cursor : 'pointer'}} sx={{ maxWidth: 350, maxHeight: 350 }}>
+    <Card style={{cursor : 'pointer'}} sx={{ maxWidth: 350, maxHeight: 350 }}>
       <CardMedia
+        onClick={() => handleClick()}
         sx={{ height: 140 }}
         image={roomPicture}
         title={roomId}

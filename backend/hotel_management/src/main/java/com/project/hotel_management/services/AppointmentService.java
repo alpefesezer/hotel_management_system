@@ -32,7 +32,6 @@ public class AppointmentService {
         if(user == null && room == null)
             return null;
         Appointment toSave = new Appointment();
-        toSave.setId(newAppointmentRequest.getId());
         toSave.setStartDate(newAppointmentRequest.getStartDate());
         toSave.setEndDate(newAppointmentRequest.getEndDate());
         toSave.setUser(user);

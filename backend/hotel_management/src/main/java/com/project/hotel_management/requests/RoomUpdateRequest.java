@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class RoomUpdateRequest {
 
-    boolean isRoomFree;
+
     String pictureUrl;
     double roomPrice;
     String description;
