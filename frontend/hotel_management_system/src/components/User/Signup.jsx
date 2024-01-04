@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import {useNavigate} from 'react-router-dom'
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -15,19 +16,48 @@ const Signup = () => {
   const [age, setAge] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const navigate = useNavigate();
 
   const handleSignup = () => {
-    console.log('Signup submitted with:', {
-      username,
-      password,
-      confirmPassword,
-      name,
-      surname,
-      age,
-      email,
-      phoneNumber,
-    });
+  
+    sendRequest()
+    setUsername("")
+    setPassword("")
+    setConfirmPassword("")
+    setAge("")
+    setName("")
+    setSurname("")
+    setEmail("")
+    setPhoneNumber("")
+    navigate("/auth/signup")
   };
+
+  const sendRequest = () => {
+    fetch("/auth/signup",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName: username,
+        password: password,
+        confirmPassword: confirmPassword,
+        age: age,
+        name: name,
+        surname: surname,
+        email: email,
+        phoneNumber: phoneNumber
+      }),
+    })
+        .then((res) => res.json())
+        .then((result) =>
+                        {
+                        localStorage.setItem("tokenKey", result.message);
+                        localStorage.setItem("currentUser", result.userId);
+                        localStorage.setItem("userName", username)})
+        .catch((err) => console.log(err))
+        alert("You have completely registered.")
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -44,7 +74,6 @@ const Signup = () => {
         </Typography>
         <Box
           component="form"
-          onSubmit={handleSignup}
           sx={{ mt: 3 }}
         >
           <TextField
@@ -134,6 +163,7 @@ const Signup = () => {
             type="submit"
             fullWidth
             variant="contained"
+            onClick={handleSignup}
             sx={{ mt: 3, mb: 2 }}
           >
             Sign Up

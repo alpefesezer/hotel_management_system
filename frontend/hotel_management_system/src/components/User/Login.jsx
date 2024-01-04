@@ -5,15 +5,40 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import {useNavigate} from 'react-router-dom'
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log('Login submitted with:', { username, password });
+    sendRequest();
+    navigate(0);
+    setUsername("");
+    setPassword("");
   };
 
+  const sendRequest = () => {
+    fetch("/auth/login",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName: username,
+        password: password,
+      }),
+    })
+        .then((res) => res.json())
+        .then((result) =>
+                        {
+                        localStorage.setItem("tokenKey", result.message);
+                        localStorage.setItem("currentUser", result.userId);
+                        localStorage.setItem("userName", username)})
+        .catch((err) => console.log(err))
+  }
+  
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -59,6 +84,7 @@ const Login = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={handleLogin}
           >
             Login
           </Button>

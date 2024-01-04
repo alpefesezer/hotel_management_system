@@ -13,6 +13,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Data
 public class Room {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     int roomStorage;

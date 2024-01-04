@@ -10,17 +10,25 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import DatesPicker from '../DatesPicker/DatesPicker';
 import ControlledOpenSelect from '../Selection/Selection';
 
 export default function ButtonAppBar() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
+  
+  let navigate = useNavigate();
+  
+  const onClick = () => {
+    localStorage.removeItem("tokenKey")
+    localStorage.removeItem("currentUser")
+    localStorage.removeItem("userName")
+    navigate(0)
+  }
+  
   return (
     <Box sx={{ flexGrow: 1, width: '100%' }}>
       <AppBar position="static" sx={{ color: 'white', backgroundColor: 'black', height: '80px' }}>
@@ -47,15 +55,27 @@ export default function ButtonAppBar() {
           <DatesPicker label="Check In" />
           <DatesPicker label="Check Out" />
           <ControlledOpenSelect />
+          <Button className= "filter_btn" style={{color: 'gray', backgroundColor: 'white'}}>Filter</Button>
           </div>
 
 
-          <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
+          {localStorage.getItem("currentUser") == null ? 
+          <Link to="/auth/login" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit">Login</Button>
+          </Link>:
+          <Link to={{pathname: '/users/' + localStorage.getItem("currentUser")}} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Button color="inherit">Profile</Button>
           </Link>
-          <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
+          }
+
+
+          {localStorage.getItem("currentUser") == null ? 
+          <Link to="/auth/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Button color="inherit">Sign Up</Button>
-          </Link>
+          </Link>:
+          <Link to="/auth/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Button color="inherit" onClick={onClick}>Log out</Button>
+          </Link>}
         </Toolbar>
       </AppBar>
 

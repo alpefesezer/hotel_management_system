@@ -4,9 +4,10 @@ import Home from './components/Home/Home';
 import User from './components/User/User';
 import Login from './components/User/Login';
 import Signup from './components/User/Signup';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import RoomPage from './components/RoomPage/RoomPage';
 import Footer from './components/Footer/Footer';
+import HomeIntro from './components/HomeIntro/HomeIntro';
 
 function App() {
   return (
@@ -16,8 +17,8 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route exact path="/users/:userId" element={<User />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Signup />} />
+          <Route exact path="/auth/login" element ={localStorage.getItem("currentUser") != null ? <Navigate to= "/"/>: <Login/>}/>
+          <Route exact path="/auth/signup" element={<Signup />} />
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
         </Routes>
       </BrowserRouter>
