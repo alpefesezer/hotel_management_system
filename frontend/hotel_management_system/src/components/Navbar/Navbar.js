@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
   
   return (
     <Box sx={{ flexGrow: 1, width: '100%' }}>
-      <AppBar position="static" sx={{ color: 'white', backgroundColor: 'black', height: '80px' }}>
+      <AppBar position="static" sx={{ color: 'white', backgroundColor: '#868686', height: '80px' }}>
         <Toolbar style={{marginTop:"10px"}}>
           <IconButton
             size="medium"
@@ -51,7 +51,7 @@ export default function ButtonAppBar() {
             </Link>
           </Typography>
           
-          <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',display: "flex", alignItems: "center", justifyContent: "center",}}>
+          <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',display: "flex", alignItems: "center", justifyContent: "center", gap:"2px"}}>
           <DatesPicker label="Check In" />
           <DatesPicker label="Check Out" />
           <ControlledOpenSelect />

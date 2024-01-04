@@ -5,7 +5,18 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import { ThemeProvider, createTheme } from '@mui/material';
 import {useNavigate} from 'react-router-dom'
+
+const theme = createTheme({
+  // Customize your theme here
+  palette: {
+    primary: {
+      main: '#FFF', // Change primary color
+    },
+    // Add more customizations as needed
+  },
+});
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -57,6 +68,7 @@ const Login = () => {
           onSubmit={handleLogin}
           sx={{ mt: 3 }}
         >
+          <ThemeProvider theme={theme}>
           <TextField
             margin="normal"
             required
@@ -79,6 +91,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          </ThemeProvider>
           <Button
             type="submit"
             fullWidth

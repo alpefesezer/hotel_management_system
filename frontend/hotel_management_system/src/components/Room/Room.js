@@ -31,8 +31,6 @@ export default function Room(props) {
         </Typography>
       </CardContent>
       <CardActions sx={{backgroundColor: "gray"}}>
-        <Button size="small" style={{color: "white"}}>Book Now!</Button>
-        <Button size="small" style={{color: "white"}}>Learn More</Button>
       </CardActions>
     </Card>
     </NavLink>

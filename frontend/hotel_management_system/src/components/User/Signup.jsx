@@ -6,6 +6,18 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import {useNavigate} from 'react-router-dom'
+import { ThemeProvider, createTheme } from '@mui/material';
+
+
+const theme = createTheme({
+  // Customize your theme here
+  palette: {
+    primary: {
+      main: '#FFF', // Change primary color
+    },
+    // Add more customizations as needed
+  },
+});
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -68,14 +80,14 @@ const Signup = () => {
           flexDirection: 'column',
           alignItems: 'center',
         }}
-      >
-        <Typography component="h1" variant="h5">
+      >        <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
         <Box
           component="form"
           sx={{ mt: 3 }}
         >
+          <ThemeProvider theme={theme}>
           <TextField
             margin="normal"
             required
@@ -159,6 +171,7 @@ const Signup = () => {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
+          </ThemeProvider>
           <Button
             type="submit"
             fullWidth
