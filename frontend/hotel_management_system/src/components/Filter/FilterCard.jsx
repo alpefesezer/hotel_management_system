@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 
-export default function FilterCa(props) {
+export default function FilterCard(props) {
     const {roomId, roomPrice, roomStorage, roomPicture, roomDescription} = props;
 
   return (

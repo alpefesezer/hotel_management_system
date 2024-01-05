@@ -39,7 +39,7 @@ const Signup = () => {
     setSurname("");
     setEmail("");
     setPhoneNumber("");
-    navigate("/auth/signup");
+    navigate(0);
   };
 
   const sendRequest = () => {

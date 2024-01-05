@@ -45,6 +45,10 @@ const Login = () => {
         localStorage.setItem("tokenKey", result.message);
         localStorage.setItem("currentUser", result.userId);
         localStorage.setItem("userName", username);
+        localStorage.setItem("name", result.name);
+        localStorage.setItem("surname", result.surname);
+        localStorage.setItem("email", result.email);
+        localStorage.setItem("phoneNumber", result.phoneNumber)
       })
       .catch((err) => console.log(err));
   };

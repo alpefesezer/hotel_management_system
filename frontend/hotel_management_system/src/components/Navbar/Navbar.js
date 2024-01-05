@@ -56,7 +56,7 @@ export default function ButtonAppBar() {
                 About boş
               </Button>
               <Link to="/filter" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Button color="inherit" style={{ margin: 10 }}>
+              <Button color="inherit" style={{ margin: 10}} variant='outlined'>
                 Filter Geçiçi Tuşu daha iyi biyer bulmak lazım
               </Button>
               </Link>

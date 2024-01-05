@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { styled } from "@mui/material/styles";
@@ -24,22 +24,42 @@ const Item = styled(Paper)(({ theme, selected }) => ({
 const RoomPage = () => {
   const { roomId } = useParams();
   const [selectedImage, setSelectedImage] = useState(1);
+  const [room, setRoomData] = useState(null);
+
+  useEffect(() => {
+    fetch(`/rooms/${roomId}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => setRoomData(data))
+      .catch(error => {
+        console.error('Error fetching room data:', error);
+      });
+  }, [roomId]);
+
+
 
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
   };
   //IMAGE HEIGHTLERI FIXED Bİ VALUE OLSUN ONLARI SEÇERKEN DİKKAT ET SONRA BURAYA MAPLERSİN ATTIĞIN İSTEKTEN
-  const imageUrls = [
-    "/hotel1.png",
-    "https://i.imgur.com/mHN46yD.png",
-    "https://www.asortie.com/uploads/en_urun_resimleri/Sapore_otel_odas%C4%B1_mobilyas%C4%B1.JPG",
-    "https://furnicdn.fra1.digitaloceanspaces.com/mobilya/saricammobilya/product/3981/b/otelicodadekorasyonu.jpg",
-  ];
+
+  const roomStorage = room && room.roomStorage !== null ? room.roomStorage : 'N/A';
+  const roomPrice = room && room.roomPrice !== null ? room.roomPrice: 'N/A';
+  const roomDescription = room && room.description !== null ? room.description: 'N/A';
+  const roomPicture = room && room.pictureUrl !== null ? room.pictureUrl: 'N/A'
+
+  const imageUrls = [roomPicture];
 
   return (
     <div style={{ margin: "10px" }}>
-      <Typography variant="h4" component="h4">
-        Hotel Room for "storage of roomid:{roomId}" People
+      <Typography variant="h4" component="h4" sx={{color: "white"}}>
+        ID is {roomId} 
+        storage is {roomStorage}
+        price is {roomPrice}
       </Typography>
       <div style={{ display: "flex" }}>
         <Box
@@ -47,13 +67,13 @@ const RoomPage = () => {
             display: "flex",
             justifyContent: "flex-start",
             marginTop: 2,
-            marginRight: 2, // Add margin-right for spacing between the Box and the second div
+            marginRight: 2, 
           }}
         >
           <img
             src={imageUrls[selectedImage - 1]}
             style={{ width: "700px", height: "485px", objectFit: "cover" }}
-            alt={`Selected Image ${selectedImage}`}
+            alt={`Selected${selectedImage}`}
           />
         </Box>
         <div style={{ marginTop: "10px", marginLeft: "30px" }}>
@@ -61,26 +81,8 @@ const RoomPage = () => {
           <Typography>
             Description:
             <Typography>
-              An Grand Hotel, Ankara’nın en merkezi yerinde, tüm turistik
-              yerlere yakın mesafede bulunup, geniş ve ferah odalarıyla siz
-              değerli misafirlerimize en iyi ve en kaliteli hizmeti sunmayı
-              amaçlamaktadır.
-              <br />
-              <br />
-              Covid-19 Pandemi sürecinde bütün önlemlerimizi ve TSE Güvenli
-              Turizm Sertifikası'nı alarak hizmetimize en güvenilir oteller
-              arasında devam etmekteyiz. Otelimiz genel olarak, düzenli bir
-              şekilde uzman ekiplerce ilaçlanmaktadır.
-              <br />
-              <br />
-              Hamam, sauna, tuz odası, açık büfe kahvaltı hizmetlerimiz ve
-              misafir memnuniyeti odaklı çalışmalarımız sizlere kendinizi
-              evinizde hissettirecektir. Misafirlerimizin günlük streslerden
-              uzaklaşmaları ve rahatlamaları için hamam ve sauna hizmetlerimizi
-              kaliteli ve hijyen koşullarına uyarak gerçekleştiriyoruz. Tuzun
-              iyileştirici gücünün kullanıldığı himalaya tuz odalarımız ile
-              misafirlerimizin sağlıkları için keyifli ve rahat anlar
-              geçirmelerini sağlıyoruz.
+              <br></br>
+              {roomDescription}
             </Typography>
           </Typography>
           </Card>
@@ -103,7 +105,7 @@ const RoomPage = () => {
                       height: "75px",
                       objectFit: "cover",
                     }}
-                    alt={`Image ${index + 1}`}
+                    alt={`${index + 1}`}
                   />
                 </Item>
               </Grid>

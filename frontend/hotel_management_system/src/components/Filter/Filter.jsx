@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FilterCard from "./FilterCard";
 import {
   Button,
@@ -6,77 +6,34 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  CircularProgress
 } from "@mui/material";
+import Room from "../Room/Room";
 
 export default function Filter() {
-  const filterData = [
-    {
-      roomStorage: 2,
-      roomPrice: 222,
-      roomId: 1,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 3,
-      roomPrice: 222,
-      roomId: 2,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 4,
-      roomPrice: 222,
-      roomId: 3,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 1,
-      roomPrice: 222,
-      roomId: 4,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 1,
-      roomPrice: 222,
-      roomId: 5,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 4,
-      roomPrice: 222,
-      roomId: 6,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 3,
-      roomPrice: 222,
-      roomId: 7,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 2,
-      roomPrice: 222,
-      roomId: 8,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-    {
-      roomStorage: 1,
-      roomPrice: 222,
-      roomId: 9,
-      roomPicture: "",
-      roomDescription: "description",
-    },
-  ];
+  const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [roomList, setRoomList] = useState([]);
+    const [data, setData] = useState([])
+
+
+    useEffect(() => {
+        fetch("/rooms")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                setIsLoaded(true);
+                setRoomList(result);
+                setData(result)
+            },
+            (error) => {
+                setIsLoaded(true);
+                setError(error);
+            }
+        )
+    }, [])
 
   const [selectedStorage, setSelectedStorage] = useState("all");
-  const [filteredData, setFilteredData] = useState(filterData);
 
   const handleStorageChange = (event) => {
     setSelectedStorage(event.target.value);
@@ -84,17 +41,25 @@ export default function Filter() {
 
   const applyFilter = () => {
     if (selectedStorage === "all") {
-      setFilteredData(filterData);
+      setRoomList(data);
     } else {
       const storageValue = parseInt(selectedStorage, 10);
-      const filteredData = filterData.filter(
-        (data) => data.roomStorage === storageValue
+      const filteredData = data.filter(
+        (room) => room.roomStorage === storageValue
       );
-      setFilteredData(filteredData);
+      setRoomList(filteredData);
     }
   };
 
-  return (
+  if(error){
+    return(
+    <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '4%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>
+    </div>
+    )
+}else if(!isLoaded){
+    return <CircularProgress color="secondary"/>
+}else {
+    return (
     <div
       style={{
         display: "flex",
@@ -105,12 +70,12 @@ export default function Filter() {
       }}
     >
       <FormControl>
-        <InputLabel style={{color:"white"}} id="storage-label">Guests Number</InputLabel>
+        <InputLabel style={{color:"white"}} id="storage-label">Guests</InputLabel>
         <Select
           labelId="storage-label"
           id="storage-select"
           value={selectedStorage}
-          label="Guests Number"
+          label="Guests"
           style={{backgroundColor:"#000000"}}
           sx={{
             textAlign:"center",
@@ -139,6 +104,7 @@ export default function Filter() {
           <MenuItem value="2">2</MenuItem>
           <MenuItem value="3">3</MenuItem>
           <MenuItem value="4">4</MenuItem>
+          <MenuItem value="5">5</MenuItem>
         </Select>
       </FormControl>
       <Button
@@ -146,7 +112,7 @@ export default function Filter() {
         style={{ marginLeft: "15px", backgroundColor:"#000000" }}
         onClick={applyFilter}
       >
-        Apply Filter
+      Search
       </Button>
       <div
         className="container"
@@ -162,17 +128,12 @@ export default function Filter() {
           rowGap: "70px",
         }}
       >
-        {filteredData.map((data) => (
-          <FilterCard
-            key={data.roomId}
-            roomStorage={data.roomStorage}
-            roomPrice={data.roomPrice}
-            roomId={data.roomId}
-            roomPicture={data.roomPicture}
-            roomDescription={data.roomDescription}
-          ></FilterCard>
+        {roomList.map((room) => (
+          <Room
+          roomStorage = {room.roomStorage} roomPrice={room.roomPrice} roomId={room.id} roomPicture={room.pictureUrl} roomDescription={room.description}
+          ></Room>
         ))}
       </div>
     </div>
-  );
-}
+  ); 
+}}

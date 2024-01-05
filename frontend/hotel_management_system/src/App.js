@@ -29,7 +29,13 @@ function App() {
               )
             }
           />
-          <Route exact path="/auth/signup" element={<Signup />} />
+          <Route exact path="/auth/signup" element={
+              localStorage.getItem("currentUser") != null ? (
+                <Navigate to="/" />
+              ) : (
+                <Signup />
+              )
+            } />
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
           <Route exact path="/admin" element={<AdminPage />} />
           <Route exact path="/user" element={<User />} />

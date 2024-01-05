@@ -6,4 +6,8 @@ import lombok.Data;
 public class AuthenticationResponse {
     String message;
     Long UserId;
+    String name;
+    String surname;
+    String email;
+    String phoneNumber;
 }
