@@ -24,12 +24,10 @@ function Home(){
     }, [])
 
     if(error){
-        return <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '4%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>>
-            <Room roomStorage = {2} roomPrice={222} roomId={0} roomPicture={""} roomDescription={"nursena"}></Room>
-            <Room roomStorage = {2} roomPrice={222} roomId={1} roomPicture={""} roomDescription={"nursena"}></Room>
-            <Room roomStorage = {2} roomPrice={222} roomId={2} roomPicture={""} roomDescription={"nursena"}></Room>
+        return(
+        <div className="container" style={{display: "flex", flexWrap: "wrap", justifyContent: "flex-start", width: '90%', marginLeft: '5%', marginTop: '4%', flexDirection: "row", columnGap:'6%', rowGap: '70px'}}>
         </div>
-        
+        )
     }else if(!isLoaded){
         return <CircularProgress color="secondary"/>
     }else {

@@ -4,12 +4,12 @@ import Typography from '@mui/material/Typography';
 
 const Footer = () => {
   return (
-    <footer style={{ marginTop: 'auto', backgroundColor: '#f8f9fa', padding: '20px 0' }}>
+    <footer style={{ marginTop: 'auto', backgroundColor: '#000000', padding: '20px 0' }}>
       <Container maxWidth="sm">
-        <Typography variant="body2" color="text.secondary" align="center">
+        <Typography variant="body2" color="#ababab" align="center">
           "alpefesezer nakliyat" her hakkı saklıdır.
         </Typography>
-        <Typography variant="body2" color="text.secondary" align="center">
+        <Typography variant="body2" color="#ababab" align="center">
           © {new Date().getFullYear()} alpefesezer
         </Typography>
       </Container>

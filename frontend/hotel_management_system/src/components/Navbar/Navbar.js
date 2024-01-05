@@ -10,9 +10,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
-import DatesPicker from '../DatesPicker/DatesPicker';
-import ControlledOpenSelect from '../Selection/Selection';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function ButtonAppBar() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
@@ -28,10 +26,12 @@ export default function ButtonAppBar() {
     localStorage.removeItem("userName")
     navigate(0)
   }
+
+
   
   return (
     <Box sx={{ flexGrow: 1, width: '100%' }}>
-      <AppBar position="static" sx={{ color: 'white', backgroundColor: '#868686', height: '80px' }}>
+      <AppBar position="static" sx={{ color: 'white', backgroundColor: '#000', height: '80px' }}>
         <Toolbar style={{marginTop:"10px"}}>
           <IconButton
             size="medium"
@@ -46,17 +46,21 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
               <Button color="inherit" style={{ margin: 10 }}>
-                Home
+                Home başlamadım
               </Button>
             </Link>
+            <Button color="inherit" style={{ margin: 10 }}>
+                Contact boş
+              </Button>
+              <Button color="inherit" style={{ margin: 10 }}>
+                About boş
+              </Button>
+              <Link to="/filter" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Button color="inherit" style={{ margin: 10 }}>
+                Filter Geçiçi Tuşu daha iyi biyer bulmak lazım
+              </Button>
+              </Link>
           </Typography>
-          
-          <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',display: "flex", alignItems: "center", justifyContent: "center", gap:"2px"}}>
-          <DatesPicker label="Check In" />
-          <DatesPicker label="Check Out" />
-          <ControlledOpenSelect />
-          <Button className= "filter_btn" style={{color: 'gray', backgroundColor: 'white'}}>Filter</Button>
-          </div>
 
           {localStorage.getItem("userName") === "admin" ? 
           <Link to="/admin" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -89,14 +93,8 @@ export default function ButtonAppBar() {
 
       <Drawer anchor="left" open={isSidebarOpen} onClose={toggleSidebar}>
         <List>
-          <ListItem button component={Link} to="/">
-            <ListItemText primary="Check In" />
-          </ListItem>
-          <ListItem button component={Link} to="/login">
-            <ListItemText primary="Check out" />
-          </ListItem>
-          <ListItem button component={Link} to="/signup">
-            <ListItemText primary="Guests" />
+          <ListItem button component={Link} to="/user">
+            <ListItemText primary="Profile" />
           </ListItem>
         </List>
       </Drawer>

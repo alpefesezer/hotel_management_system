@@ -6,17 +6,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 
-export default function Room(props) {
+export default function FilterCa(props) {
     const {roomId, roomPrice, roomStorage, roomPicture, roomDescription} = props;
 
-    function handleClick() {
-      console.log(roomId);
-    }
   return (
     <NavLink to={{ pathname: '/rooms/' + roomId }} style={{ textDecoration: 'none' }}>
-    <Card style={{cursor : 'pointer'}} sx={{ maxWidth: 350, maxHeight: 350 }}>
+    <Card style={{cursor : 'pointer'}} sx={{ Height: 500 }}>
       <CardMedia
-        onClick={() => handleClick()}
         sx={{ height: 140 }}
         image={roomPicture}
         title={roomId}
