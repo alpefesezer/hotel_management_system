@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
+import { Button } from "@mui/material";
+import { ThemeProvider, createTheme } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
 
 const Item = styled(Paper)(({ theme, selected }) => ({
   backgroundColor: selected
@@ -21,10 +26,23 @@ const Item = styled(Paper)(({ theme, selected }) => ({
   cursor: "pointer",
 }));
 
+const theme = createTheme({
+  
+  palette: {
+    primary: {
+      main: '#FFF', 
+    },
+    
+  },
+});
+
+
 const RoomPage = () => {
   const { roomId } = useParams();
   const [selectedImage, setSelectedImage] = useState(1);
   const [room, setRoomData] = useState(null);
+  const [selectedCheckIn, setSelectedCheckIn] = useState(null)
+  const [selectedCheckOut, setSelectedCheckOut] = useState(null)
 
   useEffect(() => {
     fetch(`/rooms/${roomId}`)
@@ -40,7 +58,39 @@ const RoomPage = () => {
       });
   }, [roomId]);
 
+  const sendRequest = () => {
+    fetch("/appointments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        startDate: selectedCheckIn,
+        endDate: selectedCheckOut,
+        roomId: roomId,
+        userId: localStorage.getItem("currentUser")
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+      })
+      .catch((err) => console.log(err));
+  };
 
+
+
+  const handleBookNow = () => {
+    if(localStorage.getItem("currentUser") != null){
+    sendRequest();
+    setSelectedCheckIn(null);
+    setSelectedCheckOut(null);
+    alert("You have completely booked the room")
+    }else{
+      setSelectedCheckIn(null);
+      setSelectedCheckOut(null);
+      alert("You have to login to book a room!")
+    }
+}
 
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
@@ -86,6 +136,41 @@ const RoomPage = () => {
             </Typography>
           </Typography>
           </Card>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <ThemeProvider theme={theme}>
+        <DatePicker
+          sx={{marginTop: "15px"}}
+          value={selectedCheckIn}
+          onChange={(newValue) => {setSelectedCheckIn(newValue)}}
+          label="Check in"
+          format="DD/MM/YYYY"
+          slotProps={{
+            textField: {},
+          }}
+        />
+      </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <DatePicker
+          sx={{marginTop: "15px", ml: 2}}
+          value= {selectedCheckOut}
+          onChange={(newValue) => {setSelectedCheckOut(newValue)}}
+          label="Check out"
+          format="DD/MM/YYYY"
+          slotProps={{
+            textField: {},
+          }}
+        />
+      </ThemeProvider>
+    </LocalizationProvider>
+          <Button
+            type="submit"
+            variant="contained"
+            onClick={handleBookNow}
+            sx={{ mt: 3, mb: 2 , ml: 2}}
+            style={{backgroundColor:"black"}}
+          >
+            Book Now!
+          </Button>
         </div>
       </div>
 
@@ -114,7 +199,7 @@ const RoomPage = () => {
         </Box>
       </div>
     </div>
-  );
-};
+);
+}
 
 export default RoomPage;
