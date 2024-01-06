@@ -9,6 +9,7 @@ import RoomPage from "./components/RoomPage/RoomPage";
 import Footer from "./components/Footer/Footer";
 import AdminPage from "./components/RoomPage/AdminPage";
 import Filter from "./components/Filter/Filter";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   return (
@@ -29,24 +30,28 @@ function App() {
               )
             }
           />
-          <Route exact path="/auth/signup" element={
+          <Route
+            exact
+            path="/auth/signup"
+            element={
               localStorage.getItem("currentUser") != null ? (
                 <Navigate to="/" />
               ) : (
                 <Signup />
               )
-            } />
+            }
+          />
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
           <Route exact path="/admin" element={<AdminPage />} />
           <Route exact path="/user" element={<User />} />
           <Route exact path="/filter" element={<Filter />} />
+          <Route exact path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
       <div
         style={{ display: "flex", flexDirection: "column", minHeight: "10vh" }}
-      >
-        <Footer />
-      </div>
+      ></div>
+      <Footer />
     </div>
   );
 }

@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { ThemeProvider, createTheme } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import * as React from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const theme = createTheme({
   // Customize your theme here
   palette: {
     primary: {
-      main: '#FFF', // Change primary color
+      main: "#FFF", // Change primary color
     },
-    // Add more customizations as needed
   },
 });
 

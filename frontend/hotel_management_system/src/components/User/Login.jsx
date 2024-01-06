@@ -48,7 +48,7 @@ const Login = () => {
         localStorage.setItem("name", result.name);
         localStorage.setItem("surname", result.surname);
         localStorage.setItem("email", result.email);
-        localStorage.setItem("phoneNumber", result.phoneNumber)
+        localStorage.setItem("phoneNumber", result.phoneNumber);
       })
       .catch((err) => console.log(err));
   };
@@ -81,20 +81,21 @@ const Login = () => {
               sx={{
                 "& .MuiInputLabel-root": {
                   textAlign: "center",
-                  color: "white", // Change label color
+                  color: "white",
                 },
                 "& .MuiInputBase-input": {
-                  color: "white", // Change input text color
+                  color: "white",
                 },
                 "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white !important", // Change border color
+                  borderColor: "white !important",
                 },
                 "&:focus .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white !important", // Change border color on focus
+                  borderColor: "white !important",
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white",
+                  },
               }}
             />
             <TextField
@@ -121,9 +122,10 @@ const Login = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
           </ThemeProvider>
@@ -133,7 +135,7 @@ const Login = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             onClick={handleLogin}
-            style={{backgroundColor:"black"}}
+            style={{ backgroundColor: "black" }}
           >
             Login
           </Button>

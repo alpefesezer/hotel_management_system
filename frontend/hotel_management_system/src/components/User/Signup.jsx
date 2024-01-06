@@ -109,9 +109,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -138,9 +139,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -167,9 +169,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -195,9 +198,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -223,9 +227,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -251,9 +256,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -280,9 +286,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
             <TextField
@@ -307,9 +314,10 @@ const Signup = () => {
                 "&:focus .MuiOutlinedInput-notchedOutline": {
                   borderColor: "white !important", // Change border color on focus
                 },
-                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white", // Change border color on hover
-                },
+                "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
+                  {
+                    borderColor: "white", // Change border color on hover
+                  },
               }}
             />
           </ThemeProvider>
@@ -319,7 +327,7 @@ const Signup = () => {
             variant="contained"
             onClick={handleSignup}
             sx={{ mt: 3, mb: 2 }}
-            style={{backgroundColor:"black"}}
+            style={{ backgroundColor: "black" }}
           >
             Sign Up
           </Button>

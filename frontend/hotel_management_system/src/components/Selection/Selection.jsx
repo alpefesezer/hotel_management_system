@@ -1,11 +1,11 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default function ControlledOpenSelect() {
-  const [guests, setGuests] = React.useState('');
+  const [guests, setGuests] = React.useState("");
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
@@ -39,7 +39,6 @@ export default function ControlledOpenSelect() {
           <MenuItem value={3}>3</MenuItem>
           <MenuItem value={4}>4</MenuItem>
           <MenuItem value={5}>5</MenuItem>
-
         </Select>
       </FormControl>
     </div>
