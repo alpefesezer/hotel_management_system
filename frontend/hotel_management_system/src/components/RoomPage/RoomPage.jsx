@@ -39,6 +39,46 @@ const RoomPage = () => {
   const [room, setRoomData] = useState(null);
   const [selectedCheckIn, setSelectedCheckIn] = useState(null);
   const [selectedCheckOut, setSelectedCheckOut] = useState(null);
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    fetch("/appointments")
+      .then((res) => res.json())
+      .then((result) => {
+        setAppointments(result);
+      });
+  }, []);
+
+  const checkConflict = () => {
+    // Check for conflicts only if both check-in and check-out dates are selected
+  if (selectedCheckIn && selectedCheckOut) {
+    const newAppointmentRange = {
+      startDate: new Date(selectedCheckIn).getTime(),
+      endDate: new Date(selectedCheckOut).getTime(),
+    };
+
+    // Iterate through existing appointments
+    for (const appointment of appointments) {
+      const existingAppointmentRange = {
+        startDate: new Date(appointment.startDate).getTime(),
+        endDate: new Date(appointment.endDate).getTime(),
+      };
+
+      // Check for overlap, considering strict inequalities
+      if (
+        newAppointmentRange.startDate < existingAppointmentRange.endDate &&
+        newAppointmentRange.endDate > existingAppointmentRange.startDate
+      ) {
+        // There is a conflict, reject the booking
+        alert("There is a conflict with an existing appointment. Please choose different dates.");
+        return false;
+      }
+    }
+  }
+
+  // No conflicts, proceed with the booking
+  return true;
+};
 
   useEffect(() => {
     fetch(`/rooms/${roomId}`)
@@ -74,10 +114,13 @@ const RoomPage = () => {
 
   const handleBookNow = () => {
     if (localStorage.getItem("currentUser") != null) {
-      sendRequest();
-      setSelectedCheckIn(null);
-      setSelectedCheckOut(null);
-      alert("You have completely booked the room");
+      // Check for conflicts before making the booking
+      if (checkConflict()) {
+        sendRequest();
+        setSelectedCheckIn(null);
+        setSelectedCheckOut(null);
+        alert("You have completely booked the room");
+      }
     } else {
       setSelectedCheckIn(null);
       setSelectedCheckOut(null);
@@ -103,9 +146,8 @@ const RoomPage = () => {
   return (
     <div style={{ margin: "10px" }}>
       <Typography variant="h4" component="h4" sx={{ color: "white" }}>
-        ID is {roomId}
-        storage is {roomStorage}
-        price is {roomPrice}
+        Hotel room for {" " + roomStorage + " "} people {" " + roomPrice + "₺ "}{" "}
+        for night.
       </Typography>
       <div style={{ display: "flex" }}>
         <Box
@@ -138,7 +180,7 @@ const RoomPage = () => {
                 sx={{
                   marginTop: "15px",
                   textAlign: "center",
-                  width: "130px",
+                  width: "150px",
                   "& .MuiInputLabel-root": {
                     textAlign: "center",
                     color: "white", // Change label color
@@ -174,7 +216,7 @@ const RoomPage = () => {
                   marginTop: "15px",
                   ml: 2,
                   textAlign: "center",
-                  width: "130px",
+                  width: "150px",
                   "& .MuiInputLabel-root": {
                     textAlign: "center",
                     color: "white", // Change label color
@@ -224,7 +266,8 @@ const RoomPage = () => {
               <Grid key={index}>
                 <Item
                   onClick={() => handleImageClick(index + 1)}
-                  selected={selectedImage === index + 1}                >
+                  selected={selectedImage === index + 1}
+                >
                   <img
                     src={imageUrl}
                     style={{

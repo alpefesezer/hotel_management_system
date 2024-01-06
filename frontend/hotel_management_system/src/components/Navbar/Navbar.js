@@ -7,10 +7,6 @@ import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function ButtonAppBar() {
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   let navigate = useNavigate();
 
@@ -18,6 +14,10 @@ export default function ButtonAppBar() {
     localStorage.removeItem("tokenKey");
     localStorage.removeItem("currentUser");
     localStorage.removeItem("userName");
+    localStorage.removeItem("name");
+    localStorage.removeItem("surname");
+    localStorage.removeItem("phoneNumber")
+    localStorage.removeItem("email")
     navigate(0);
   };
 
