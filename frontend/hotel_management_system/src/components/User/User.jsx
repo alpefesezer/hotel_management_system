@@ -14,6 +14,7 @@ export default function User(props) {
               textShadow: "1.5px 1.5px 1.5px #000",
               textAlign: "justify",
               marginTop: "10px",
+              marginRight: "20px",
             }}
           >
             Username:
@@ -27,7 +28,6 @@ export default function User(props) {
               textAlign: "justify",
               marginTop: "10px",
             }}
-            style={{ marginLeft: "5px", color: "#535353" }}
           >
             {localStorage.getItem("userName")}
           </Typography>
@@ -41,6 +41,7 @@ export default function User(props) {
               textShadow: "1.5px 1.5px 1.5px #000",
               textAlign: "justify",
               marginTop: "10px",
+              marginRight: "20px",
             }}
           >
             Name:
@@ -54,7 +55,6 @@ export default function User(props) {
               textAlign: "justify",
               marginTop: "10px",
             }}
-            style={{ marginLeft: "5px", color: "#535353" }}
           >
             {localStorage.getItem("name")}
           </Typography>
@@ -68,6 +68,7 @@ export default function User(props) {
               textShadow: "1.5px 1.5px 1.5px #000",
               textAlign: "justify",
               marginTop: "10px",
+              marginRight: "20px",
             }}
           >
             Surname:
@@ -81,7 +82,6 @@ export default function User(props) {
               textAlign: "justify",
               marginTop: "10px",
             }}
-            style={{ marginLeft: "5px", color: "#535353" }}
           >
             {localStorage.getItem("surname")}
           </Typography>
@@ -95,6 +95,7 @@ export default function User(props) {
               textShadow: "1.5px 1.5px 1.5px #000",
               textAlign: "justify",
               marginTop: "10px",
+              marginRight: "20px",
             }}
           >
             Email Adress:
@@ -108,7 +109,6 @@ export default function User(props) {
               textAlign: "justify",
               marginTop: "10px",
             }}
-            style={{ marginLeft: "5px", color: "#535353" }}
           >
             {localStorage.getItem("email")}
           </Typography>
@@ -122,6 +122,7 @@ export default function User(props) {
               textShadow: "1.5px 1.5px 1.5px #000",
               textAlign: "justify",
               marginTop: "10px",
+              marginRight: "20px",
             }}
           >
             Phone Number:
@@ -135,7 +136,6 @@ export default function User(props) {
               textAlign: "justify",
               marginTop: "10px",
             }}
-            style={{ marginLeft: "5px", color: "#535353" }}
           >
             {localStorage.getItem("phoneNumber")}
           </Typography>

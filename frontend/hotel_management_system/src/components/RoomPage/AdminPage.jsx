@@ -16,6 +16,15 @@ export default function AdminPage() {
   const navigate = useNavigate();
   const url = "/rooms/" + id;
 
+  const theme = createTheme({
+    // Customize your theme here
+    palette: {
+      primary: {
+        main: "#FFF", // Change primary color
+      },
+    },
+  });
+  
   const handleAdd = () => {
     sendRequest();
     setDescription("");
@@ -69,7 +78,7 @@ export default function AdminPage() {
   };
 
   return (
-    <div>
+    <div style={{display: "flex", justifyContent: "center", alignItems:"center", marginBottom: "13%", columnGap: "6%"}}>
       <div
         style={{
           display: "flex",
@@ -92,6 +101,7 @@ export default function AdminPage() {
               Add new Room
             </Typography>
             <Box component="form" sx={{ mt: 3 }}>
+            <ThemeProvider theme={theme}>
               <TextField
                 margin="normal"
                 required
@@ -209,6 +219,7 @@ export default function AdminPage() {
                     },
                 }}
               />
+              </ThemeProvider>
               <Button
                 type="submit"
                 fullWidth
@@ -245,6 +256,7 @@ export default function AdminPage() {
               Delete Room By Id
             </Typography>
             <Box component="form" sx={{ mt: 3 }}>
+            <ThemeProvider theme={theme}>
               <TextField
                 margin="normal"
                 required
@@ -275,6 +287,7 @@ export default function AdminPage() {
                     },
                 }}
               />
+              </ThemeProvider>
               <Button
                 type="submit"
                 fullWidth

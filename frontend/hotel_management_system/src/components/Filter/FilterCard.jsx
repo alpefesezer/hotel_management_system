@@ -15,9 +15,9 @@ export default function FilterCard(props) {
       to={{ pathname: "/rooms/" + roomId }}
       style={{ textDecoration: "none" }}
     >
-      <Card style={{ cursor: "pointer" }} sx={{ Height: 500 }}>
-        <CardMedia sx={{ height: 140 }} image={roomPicture} title={roomId} />
-        <CardContent sx={{ backgroundColor: "gray" }}>
+      <Card style={{ cursor: "pointer" }} sx={{ height: 400, width: 650, overflow: "hidden" }}>
+        <CardMedia sx={{ height: 200 }} image={roomPicture} title={roomId} />
+        <CardContent sx={{ backgroundColor: "white", height: "100%" }}>
           <Typography gutterBottom variant="h5" component="div">
             {"Hotel Room for " + roomStorage + " people"}{" "}
             {"  " + roomPrice + "₺ for night"}

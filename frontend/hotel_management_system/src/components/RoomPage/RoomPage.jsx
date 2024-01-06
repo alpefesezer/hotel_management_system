@@ -138,7 +138,7 @@ const RoomPage = () => {
                 sx={{
                   marginTop: "15px",
                   textAlign: "center",
-                  width: "110px",
+                  width: "130px",
                   "& .MuiInputLabel-root": {
                     textAlign: "center",
                     color: "white", // Change label color
@@ -174,7 +174,7 @@ const RoomPage = () => {
                   marginTop: "15px",
                   ml: 2,
                   textAlign: "center",
-                  width: "110px",
+                  width: "130px",
                   "& .MuiInputLabel-root": {
                     textAlign: "center",
                     color: "white", // Change label color
@@ -224,8 +224,7 @@ const RoomPage = () => {
               <Grid key={index}>
                 <Item
                   onClick={() => handleImageClick(index + 1)}
-                  selected={selectedImage === index + 1}
-                >
+                  selected={selectedImage === index + 1}                >
                   <img
                     src={imageUrl}
                     style={{
