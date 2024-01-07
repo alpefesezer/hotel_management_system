@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function ButtonAppBar() {
-
   let navigate = useNavigate();
 
   const onClick = () => {
@@ -16,8 +15,8 @@ export default function ButtonAppBar() {
     localStorage.removeItem("userName");
     localStorage.removeItem("name");
     localStorage.removeItem("surname");
-    localStorage.removeItem("phoneNumber")
-    localStorage.removeItem("email")
+    localStorage.removeItem("phoneNumber");
+    localStorage.removeItem("email");
     navigate(0);
   };
 
@@ -47,7 +46,7 @@ export default function ButtonAppBar() {
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Button color="inherit" style={{ margin: 10 }} variant="outlined">
-                Filter Geçiçi Tuşu daha iyi biyer bulmak lazım
+                See Our Rooms
               </Button>
             </Link>
           </Typography>

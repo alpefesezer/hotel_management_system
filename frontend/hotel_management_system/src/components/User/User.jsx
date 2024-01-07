@@ -36,6 +36,7 @@ export default function User() {
           textShadow: "1.5px 1.5px 1.5px #000",
           textAlign: "justify",
           marginTop: "10px",
+          marginRight:"20px"
         }}
       >
         Start Date: {formatDate(appointment.startDate)}

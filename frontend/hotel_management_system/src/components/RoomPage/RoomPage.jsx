@@ -144,7 +144,7 @@ const RoomPage = () => {
   const imageUrls = [roomPicture];
 
   return (
-    <div style={{ margin: "10px" }}>
+    <div style={{ margin: "10px", padding:"4%", paddingLeft:"8%", paddingRight:"8%" }}>
       <Typography variant="h4" component="h4" sx={{ color: "white" }}>
         Hotel room for {" " + roomStorage + " "} people {" " + roomPrice + "₺ "}{" "}
         for night.
