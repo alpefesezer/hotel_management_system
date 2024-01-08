@@ -37,7 +37,9 @@ export default function User() {
           throw new Error("Something went wrong");
         }
         // Update state after successful delete
-        setAppointments((prevAppointments) => prevAppointments.filter(appointment => appointment.id !== id));
+        setAppointments((prevAppointments) =>
+          prevAppointments.filter((appointment) => appointment.id !== id)
+        );
       })
       .catch((e) => {
         console.log(e);
@@ -51,26 +53,31 @@ export default function User() {
     if (userAppointments.length > 0) {
       return userAppointments.map((appointment) => (
         <div>
-        <Typography
-          sx={{
-            fontWeight: "100",
-            color: "#FFF",
-            fontSize: "30px",
-            textShadow: "1.5px 1.5px 1.5px #000",
-            textAlign: "justify",
-            marginTop: "10px",
-            marginRight: "20px",
-          }}
-        >
-          Start Date: {formatDate(appointment.startDate)}
-          <br></br>
-          End Date: {formatDate(appointment.endDate)}
-          <br></br>
-          Room Id: {appointment.roomId}
-        </Typography>
-        <IconButton onClick= {()=> handleDelete(appointment.id)} aria-label="delete" size="large">
-              <DeleteIcon fontSize="inherit" />
-        </IconButton>
+          <Typography
+            sx={{
+              fontWeight: "100",
+              color: "#FFF",
+              fontSize: "30px",
+              textShadow: "1.5px 1.5px 1.5px #000",
+              textAlign: "justify",
+              marginTop: "10px",
+              marginRight: "20px",
+            }}
+          >
+            Start Date: {formatDate(appointment.startDate)}
+            <br></br>
+            End Date: {formatDate(appointment.endDate)}
+            <br></br>
+            Room Id: {appointment.roomId}
+          </Typography>
+          <IconButton
+            onClick={() => handleDelete(appointment.id)}
+            aria-label="delete"
+            size="50px"
+            style={{ marginLeft: "-15px" }}
+          >
+            <DeleteIcon fontSize="inherit" />
+          </IconButton>
         </div>
       ));
     } else {
@@ -232,7 +239,7 @@ export default function User() {
               {localStorage.getItem("phoneNumber")}
             </Typography>
           </div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "", justifyContent: "center" }}>
             <Typography
               sx={{
                 fontWeight: "800",
@@ -244,9 +251,22 @@ export default function User() {
                 marginRight: "20px",
               }}
             >
-              Your Appointment:
+              Your Appointments:
             </Typography>
-            {callAppointments(localStorage.getItem("currentUser"))}
+            <Box
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                width: "90%",
+                marginLeft: "5%",
+                marginTop: "2%",
+                flexDirection: "row",
+                columnGap: "6%",
+                rowGap: "70px",
+              }}
+            >
+              {callAppointments(localStorage.getItem("currentUser"))}
+            </Box>
           </div>
         </Box>
       </div>

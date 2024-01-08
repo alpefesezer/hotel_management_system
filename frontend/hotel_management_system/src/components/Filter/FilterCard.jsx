@@ -7,14 +7,18 @@ import Typography from "@mui/material/Typography";
 import { NavLink } from "react-router-dom";
 
 export default function FilterCard(props) {
-  const { roomId, roomPrice, roomStorage, roomPicture, roomDescription } = props;
+  const { roomId, roomPrice, roomStorage, roomPicture, roomDescription } =
+    props;
 
   return (
     <NavLink
       to={{ pathname: "/rooms/" + roomId }}
       style={{ textDecoration: "none" }}
     >
-      <Card style={{ cursor: "pointer" }} sx={{ height: 400, width: 650, overflow: "hidden" }}>
+      <Card
+        style={{ cursor: "pointer" }}
+        sx={{ height: 400, width: 650, overflow: "hidden" }}
+      >
         <CardMedia sx={{ height: 200 }} image={roomPicture} title={roomId} />
         <CardContent sx={{ backgroundColor: "white", height: "100%" }}>
           <Typography gutterBottom variant="h5" component="div">
