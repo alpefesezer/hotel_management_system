@@ -55,29 +55,31 @@ const RoomPage = () => {
       const newAppointmentRange = {
         startDate: new Date(selectedCheckIn).getTime(),
         endDate: new Date(selectedCheckOut).getTime(),
+        roomId: roomId, // assuming you have a variable for the selected room id
       };
-
+  
       // Iterate through existing appointments
       for (const appointment of appointments) {
         const existingAppointmentRange = {
           startDate: new Date(appointment.startDate).getTime(),
           endDate: new Date(appointment.endDate).getTime(),
         };
-
+  
         // Check for overlap, considering strict inequalities
         if (
           newAppointmentRange.startDate < existingAppointmentRange.endDate &&
-          newAppointmentRange.endDate > existingAppointmentRange.startDate
+          newAppointmentRange.endDate > existingAppointmentRange.startDate &&
+          newAppointmentRange.roomId == appointment.roomId
         ) {
-          // There is a conflict, reject the booking
+          // There is a conflict for the same room, reject the booking
           alert(
-            "There is a conflict with an existing appointment. Please choose different dates."
+            "There is a conflict with an existing appointment in the same room. Please choose different dates or room."
           );
           return false;
         }
       }
     }
-
+  
     // No conflicts, proceed with the booking
     return true;
   };
@@ -120,7 +122,7 @@ const RoomPage = () => {
       if (checkConflict()) {
         // Check if the selectedCheckIn is earlier than selectedCheckOut
         if (selectedCheckIn && selectedCheckOut && selectedCheckIn > selectedCheckOut) {
-          alert("Please select a valid date range. Check-in date cannot be later than the check-out date.");
+          alert("Please select a valid date range. Check-in date cannot be later than the check-out date.")
         } else {
           // If everything is fine, proceed with the booking
           sendRequest();

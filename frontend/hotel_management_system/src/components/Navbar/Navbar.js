@@ -38,7 +38,7 @@ export default function ButtonAppBar() {
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <Button color="inherit" style={{ margin: 10 }}>
-                Contact boş
+                Contact
               </Button>
             </Link>
             <Link

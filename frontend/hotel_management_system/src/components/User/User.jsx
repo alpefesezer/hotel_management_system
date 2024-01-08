@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 export default function User() {
   const [appointments, setAppointments] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const url = "/appointments/";
 
   useEffect(() => {
     fetch("/appointments")
@@ -24,12 +25,32 @@ export default function User() {
     return formattedDate;
   };
 
+  const handleDelete = (id) => {
+    fetch(url + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+        // Update state after successful delete
+        setAppointments((prevAppointments) => prevAppointments.filter(appointment => appointment.id !== id));
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const callAppointments = (userId) => {
     const userAppointments = appointments.filter(
       (appointment) => appointment.userId == userId
     );
     if (userAppointments.length > 0) {
       return userAppointments.map((appointment) => (
+        <div>
         <Typography
           sx={{
             fontWeight: "100",
@@ -47,6 +68,10 @@ export default function User() {
           <br></br>
           Room Id: {appointment.roomId}
         </Typography>
+        <IconButton onClick= {()=> handleDelete(appointment.id)} aria-label="delete" size="large">
+              <DeleteIcon fontSize="inherit" />
+        </IconButton>
+        </div>
       ));
     } else {
       return (
@@ -222,9 +247,6 @@ export default function User() {
               Your Appointment:
             </Typography>
             {callAppointments(localStorage.getItem("currentUser"))}
-            <IconButton aria-label="delete" size="large">
-              <DeleteIcon fontSize="inherit" />
-            </IconButton>
           </div>
         </Box>
       </div>
