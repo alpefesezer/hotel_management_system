@@ -51,34 +51,36 @@ const RoomPage = () => {
 
   const checkConflict = () => {
     // Check for conflicts only if both check-in and check-out dates are selected
-  if (selectedCheckIn && selectedCheckOut) {
-    const newAppointmentRange = {
-      startDate: new Date(selectedCheckIn).getTime(),
-      endDate: new Date(selectedCheckOut).getTime(),
-    };
-
-    // Iterate through existing appointments
-    for (const appointment of appointments) {
-      const existingAppointmentRange = {
-        startDate: new Date(appointment.startDate).getTime(),
-        endDate: new Date(appointment.endDate).getTime(),
+    if (selectedCheckIn && selectedCheckOut) {
+      const newAppointmentRange = {
+        startDate: new Date(selectedCheckIn).getTime(),
+        endDate: new Date(selectedCheckOut).getTime(),
       };
 
-      // Check for overlap, considering strict inequalities
-      if (
-        newAppointmentRange.startDate < existingAppointmentRange.endDate &&
-        newAppointmentRange.endDate > existingAppointmentRange.startDate
-      ) {
-        // There is a conflict, reject the booking
-        alert("There is a conflict with an existing appointment. Please choose different dates.");
-        return false;
+      // Iterate through existing appointments
+      for (const appointment of appointments) {
+        const existingAppointmentRange = {
+          startDate: new Date(appointment.startDate).getTime(),
+          endDate: new Date(appointment.endDate).getTime(),
+        };
+
+        // Check for overlap, considering strict inequalities
+        if (
+          newAppointmentRange.startDate < existingAppointmentRange.endDate &&
+          newAppointmentRange.endDate > existingAppointmentRange.startDate
+        ) {
+          // There is a conflict, reject the booking
+          alert(
+            "There is a conflict with an existing appointment. Please choose different dates."
+          );
+          return false;
+        }
       }
     }
-  }
 
-  // No conflicts, proceed with the booking
-  return true;
-};
+    // No conflicts, proceed with the booking
+    return true;
+  };
 
   useEffect(() => {
     fetch(`/rooms/${roomId}`)
@@ -116,10 +118,16 @@ const RoomPage = () => {
     if (localStorage.getItem("currentUser") != null) {
       // Check for conflicts before making the booking
       if (checkConflict()) {
-        sendRequest();
-        setSelectedCheckIn(null);
-        setSelectedCheckOut(null);
-        alert("You have completely booked the room");
+        // Check if the selectedCheckIn is earlier than selectedCheckOut
+        if (selectedCheckIn && selectedCheckOut && selectedCheckIn > selectedCheckOut) {
+          alert("Please select a valid date range. Check-in date cannot be later than the check-out date.");
+        } else {
+          // If everything is fine, proceed with the booking
+          sendRequest();
+          setSelectedCheckIn(null);
+          setSelectedCheckOut(null);
+          alert("You have completely booked the room");
+        }
       }
     } else {
       setSelectedCheckIn(null);
@@ -127,6 +135,7 @@ const RoomPage = () => {
       alert("You have to login to book a room!");
     }
   };
+  
 
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
@@ -144,7 +153,14 @@ const RoomPage = () => {
   const imageUrls = [roomPicture];
 
   return (
-    <div style={{ margin: "10px", padding:"4%", paddingLeft:"8%", paddingRight:"8%" }}>
+    <div
+      style={{
+        margin: "10px",
+        padding: "4%",
+        paddingLeft: "8%",
+        paddingRight: "8%",
+      }}
+    >
       <Typography variant="h4" component="h4" sx={{ color: "white" }}>
         Hotel room for {" " + roomStorage + " "} people {" " + roomPrice + "₺ "}{" "}
         for night.
