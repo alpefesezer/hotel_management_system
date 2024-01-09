@@ -24,9 +24,6 @@ const Login = () => {
 
   const handleLogin = () => {
     sendRequest();
-    navigate(0);
-    setUsername("");
-    setPassword("");
   };
 
   const sendRequest = () => {
