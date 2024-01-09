@@ -26,7 +26,11 @@ const Login = () => {
 
   // Event handler for the login button
   const handleLogin = () => {
-    sendRequest();
+    if(username == `` || password == ``){
+      alert(`username or password is null.`)
+    }else{
+      sendRequest();
+    }
   };
 
   // Function to send a login request
