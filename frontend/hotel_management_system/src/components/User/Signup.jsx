@@ -33,7 +33,30 @@ const Signup = () => {
 
   // Event handler for the signup button
   const handleSignup = () => {
+    // Check if any of the required fields are empty
+    if (
+      !username ||
+      !password ||
+      !confirmPassword ||
+      !name ||
+      !surname ||
+      !age ||
+      !email ||
+      !phoneNumber
+    ) {
+      alert("Please fill in all the required fields.");
+      return;
+    }
+  
+    // Check if password and confirm password match
+    if (password !== confirmPassword) {
+      alert("Password and Confirm Password do not match.");
+      return;
+    }
+  
+    // Send signup request if all validations pass
     sendRequest();
+  
     // Clear form fields after signup
     setUsername("");
     setPassword("");
@@ -45,6 +68,7 @@ const Signup = () => {
     setPhoneNumber("");
     navigate(0); // Navigate to a different page if needed
   };
+  
 
   // Function to send a signup request
   const sendRequest = () => {
