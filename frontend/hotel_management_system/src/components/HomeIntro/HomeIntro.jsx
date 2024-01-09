@@ -2,10 +2,9 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
-import { Hidden } from "@mui/material";
-
 export default function HomeIntro() {
   return (
+    // Container for the image gallery with styling
     <div
       style={{
         display: "flex",
@@ -16,10 +15,14 @@ export default function HomeIntro() {
         marginRight: "7%",
       }}
     >
+      {/* Box component containing the ImageList for the gallery */}
       <Box sx={{ width: 720, height: 1150, overflowY: "hidden" }}>
+        {/* ImageList component with masonry layout, 3 columns, and 8px gap */}
         <ImageList variant="masonry" cols={3} gap={8}>
+          {/* Map through itemData to create ImageListItems */}
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
+              {/* Image element for each gallery item */}
               <img
                 srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
                 src={`${item.img}?w=248&fit=crop&auto=format`}
@@ -34,6 +37,7 @@ export default function HomeIntro() {
   );
 }
 
+// Data for the gallery items (images and titles)
 const itemData = [
   {
     img: "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg",

@@ -8,17 +8,19 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material";
 
+// Create a custom theme for Material-UI components
 const theme = createTheme({
-  // Customize your theme here
   palette: {
     primary: {
-      main: "#FFF", // Change primary color
+      main: "#FFF", // Customize primary color
     },
     // Add more customizations as needed
   },
 });
 
+// Define the Signup functional component
 const Signup = () => {
+  // State variables for various form fields and navigation
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,8 +31,10 @@ const Signup = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const navigate = useNavigate();
 
+  // Event handler for the signup button
   const handleSignup = () => {
     sendRequest();
+    // Clear form fields after signup
     setUsername("");
     setPassword("");
     setConfirmPassword("");
@@ -39,9 +43,10 @@ const Signup = () => {
     setSurname("");
     setEmail("");
     setPhoneNumber("");
-    navigate(0);
+    navigate(0); // Navigate to a different page if needed
   };
 
+  // Function to send a signup request
   const sendRequest = () => {
     fetch("/auth/signup", {
       method: "POST",
@@ -61,6 +66,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((result) => {
+        // Store user-related data in local storage upon successful signup
         localStorage.setItem("tokenKey", result.message);
         localStorage.setItem("currentUser", result.userId);
         localStorage.setItem("userName", username);
@@ -68,6 +74,8 @@ const Signup = () => {
       .catch((err) => console.log(err));
     alert("You have completely registered.");
   };
+
+  // JSX structure rendering the Material-UI components for the signup form
 
   return (
     <Container component="main" maxWidth="xs">

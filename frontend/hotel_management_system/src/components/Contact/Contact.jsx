@@ -1,11 +1,16 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+// Contact component to display contact information
 export default function Contact(props) {
   return (
+    // Container for the contact section with a minimum height
     <div style={{ minHeight: "650px" }}>
+      {/* Box component for styling and layout */}
       <Box style={{ padding: "8%", paddingTop: "4%", paddingBottom: "4%" }}>
+        {/* Flex container for a horizontal layout */}
         <div style={{ display: "flex", flexDirection: "row" }}>
+          {/* Main heading for the contact section */}
           <Typography
             sx={{
               fontWeight: "800",
@@ -17,8 +22,11 @@ export default function Contact(props) {
             }}
           >
             Contact
+            {/* Flex container for organizing contact details */}
             <div style={{ display: "flex" }}>
+              {/* First contact details block */}
               <div>
+                {/* Email and phone details with styling */}
                 <Typography
                   sx={{
                     fontWeight: "100",
@@ -35,7 +43,9 @@ export default function Contact(props) {
                   +90 542 222 22 22
                 </Typography>
               </div>
+              {/* Second contact details block */}
               <div>
+                {/* Email and phone details with styling */}
                 <Typography
                   sx={{
                     fontWeight: "100",
@@ -52,6 +62,7 @@ export default function Contact(props) {
                 </Typography>
               </div>
             </div>
+            {/* Additional contact information */}
             <Typography
               sx={{
                 fontWeight: "100",

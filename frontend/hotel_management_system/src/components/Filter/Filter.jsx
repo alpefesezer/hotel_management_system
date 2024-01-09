@@ -9,12 +9,15 @@ import {
   CircularProgress,
 } from "@mui/material";
 
+// Filter component for displaying a filter interface and room cards
 export default function Filter() {
+  // State variables for handling data loading and filtering
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [roomList, setRoomList] = useState([]);
   const [data, setData] = useState([]);
 
+  // Fetch data from the server on component mount
   useEffect(() => {
     fetch("/rooms")
       .then((res) => res.json())
@@ -31,12 +34,15 @@ export default function Filter() {
       );
   }, []);
 
+  // State variable for selected storage filter
   const [selectedStorage, setSelectedStorage] = useState("all");
 
+  // Handler for changing the selected storage filter
   const handleStorageChange = (event) => {
     setSelectedStorage(event.target.value);
   };
 
+  // Function to apply the selected filter and update roomList
   const applyFilter = () => {
     if (selectedStorage === "all") {
       setRoomList(data);
@@ -49,7 +55,9 @@ export default function Filter() {
     }
   };
 
+  // Conditional rendering based on data loading and errors
   if (error) {
+    // Render when there is an error
     return (
       <div
         className="container"
@@ -67,8 +75,10 @@ export default function Filter() {
       ></div>
     );
   } else if (!isLoaded) {
+    // Render a loading spinner while data is being fetched
     return <CircularProgress color="secondary" />;
   } else {
+    // Render the filter interface and room cards when data is loaded
     return (
       <div
         style={{
@@ -79,6 +89,7 @@ export default function Filter() {
           flexDirection: "row",
         }}
       >
+        {/* Filter interface with storage dropdown and search button */}
         <FormControl>
           <InputLabel style={{ color: "white" }} id="storage-label">
             Guests
@@ -112,6 +123,7 @@ export default function Filter() {
             }}
             onChange={handleStorageChange}
           >
+            {/* Dropdown options for number of guests */}
             <MenuItem value="all">Show All</MenuItem>
             <MenuItem value="1">1</MenuItem>
             <MenuItem value="2">2</MenuItem>
@@ -120,6 +132,7 @@ export default function Filter() {
             <MenuItem value="5">5</MenuItem>
           </Select>
         </FormControl>
+        {/* Search button to apply the selected filter */}
         <Button
           variant="contained"
           style={{ marginLeft: "15px", backgroundColor: "#000000" }}
@@ -127,6 +140,7 @@ export default function Filter() {
         >
           Search
         </Button>
+        {/* Container for displaying filtered room cards */}
         <div
           className="container"
           style={{
@@ -141,6 +155,7 @@ export default function Filter() {
             rowGap: "70px",
           }}
         >
+          {/* Map through roomList to render FilterCard for each room */}
           {roomList.map((room) => (
             <FilterCard
               roomStorage={room.roomStorage}

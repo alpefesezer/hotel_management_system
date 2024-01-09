@@ -8,24 +8,28 @@ import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material";
 
+// Create a custom theme for Material-UI components
 const theme = createTheme({
-  // Customize your theme here
   palette: {
     primary: {
-      main: "#FFF", // Change primary color
+      main: "#FFF", // Customize primary color
     },
   },
 });
 
+// Define the Login functional component
 const Login = () => {
+  // State variables for username, password, and navigation
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Event handler for the login button
   const handleLogin = () => {
     sendRequest();
   };
 
+  // Function to send a login request
   const sendRequest = () => {
     fetch("/auth/login", {
       method: "POST",
@@ -39,6 +43,7 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((result) => {
+        // Store user-related data in local storage upon successful login
         localStorage.setItem("tokenKey", result.message);
         localStorage.setItem("currentUser", result.userId);
         localStorage.setItem("userName", username);
@@ -50,12 +55,13 @@ const Login = () => {
       .catch((err) => console.log(err));
   };
 
+  // JSX structure rendering the Material-UI components for the login form
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
-          marginBottom:20,
+          marginBottom: 20,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -77,6 +83,7 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               sx={{
+                // Styling for the username TextField
                 "& .MuiInputLabel-root": {
                   textAlign: "center",
                   color: "white",
@@ -107,26 +114,28 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               sx={{
+                // Styling for the password TextField
                 "& .MuiInputLabel-root": {
                   textAlign: "center",
-                  color: "white", // Change label color
+                  color: "white",
                 },
                 "& .MuiInputBase-input": {
-                  color: "white", // Change input text color
+                  color: "white",
                 },
                 "& .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white !important", // Change border color
+                  borderColor: "white !important",
                 },
                 "&:focus .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "white !important", // Change border color on focus
+                  borderColor: "white !important",
                 },
                 "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
                   {
-                    borderColor: "white", // Change border color on hover
+                    borderColor: "white",
                   },
               }}
             />
           </ThemeProvider>
+          {/* Login button */}
           <Button
             type="submit"
             fullWidth
@@ -143,4 +152,5 @@ const Login = () => {
   );
 };
 
+// Export the Login component as the default export
 export default Login;

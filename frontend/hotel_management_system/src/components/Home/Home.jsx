@@ -4,9 +4,10 @@ import { Box, Typography, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Divider from "@mui/material/Divider";
 
+// Home component for the main landing page
 function Home() {
-
     return (
+      // Main container with background image and styling
       <div
         style={{
           backgroundImage: "url('wallpaperflare.com_wallpaper.jpg')",
@@ -15,6 +16,7 @@ function Home() {
           marginTop: "-60px",
         }}
       >
+        {/* Content container with flex layout */}
         <div
           className="container"
           style={{
@@ -30,7 +32,9 @@ function Home() {
             rowGap: "70px",
           }}
         >
+          {/* Left side box containing welcome text and hotel description */}
           <Box sx={{ width: "100%", height: "48rem", marginTop: "5%" }}>
+            {/* Welcome message and hotel description */}
             <Typography
               sx={{
                 fontWeight: "700",
@@ -41,6 +45,7 @@ function Home() {
             >
               Welcome {localStorage.getItem("name")}
               <br />
+              {/* Hotel description text */}
               <Typography
                 sx={{
                   fontWeight: "100",
@@ -61,6 +66,7 @@ function Home() {
                 carries all the values ​​of Istanbul to the highest level.
                 <br />
                 <br />
+                {/* Additional hotel information */}
                 <Typography
                   sx={{
                     fontWeight: "100",
@@ -85,7 +91,9 @@ function Home() {
                 </Typography>
               </Typography>
             </Typography>
+            {/* Divider for separating content sections */}
             <Divider sx={{ marginTop: "30px", borderBottomWidth: "5px" }} />
+            {/* Button for navigating to the room filter page */}
             <NavLink
               to={{ pathname: "/filter/" }}
               style={{ textDecoration: "none" }}
@@ -105,6 +113,7 @@ function Home() {
                 }}
                 variant="contained"
               >
+                {/* Button text */}
                 <Typography
                   sx={{ color: "#000", fontWeight: "700", fontSize: "20px" }}
                 >
@@ -113,6 +122,7 @@ function Home() {
               </Button>
             </NavLink>
           </Box>
+          {/* Right side box containing HomeIntro component */}
           <HomeIntro />
         </div>
       </div>

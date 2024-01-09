@@ -5,10 +5,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState, useEffect } from "react";
 
 export default function User() {
+    // State to store user appointments and loading status
+
   const [appointments, setAppointments] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const url = "/appointments/";
 
+    // Fetch user appointments when the component mounts
   useEffect(() => {
     fetch("/appointments")
       .then((res) => res.json())
@@ -18,6 +21,7 @@ export default function User() {
       });
   }, []);
 
+    // Function to format date strings into a more readable format
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const options = { year: "numeric", month: "2-digit", day: "2-digit" };
@@ -25,6 +29,7 @@ export default function User() {
     return formattedDate;
   };
 
+    // Function to handle appointment deletion
   const handleDelete = (id) => {
     fetch(url + id, {
       method: "DELETE",
@@ -46,6 +51,7 @@ export default function User() {
       });
   };
 
+    // Function to display user appointments or a message if none
   const callAppointments = (userId) => {
     const userAppointments = appointments.filter(
       (appointment) => appointment.userId == userId

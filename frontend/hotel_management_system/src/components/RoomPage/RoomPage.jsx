@@ -34,13 +34,23 @@ const theme = createTheme({
 });
 
 const RoomPage = () => {
+  // Fetch the roomId from the URL parameters
   const { roomId } = useParams();
+
+  // State to manage the selected image
   const [selectedImage, setSelectedImage] = useState(1);
+
+  // State to store room data
   const [room, setRoomData] = useState(null);
+
+  // States for selected check-in and check-out dates
   const [selectedCheckIn, setSelectedCheckIn] = useState(null);
   const [selectedCheckOut, setSelectedCheckOut] = useState(null);
+
+  // State to store existing appointments
   const [appointments, setAppointments] = useState([]);
 
+  // Effect hook to fetch existing appointments from the server
   useEffect(() => {
     fetch("/appointments")
       .then((res) => res.json())
@@ -49,6 +59,7 @@ const RoomPage = () => {
       });
   }, []);
 
+  // Function to check for date conflicts with existing appointments
   const checkConflict = () => {
     // Check for conflicts only if both check-in and check-out dates are selected
     if (selectedCheckIn && selectedCheckOut) {
@@ -57,14 +68,14 @@ const RoomPage = () => {
         endDate: new Date(selectedCheckOut).getTime(),
         roomId: roomId, // assuming you have a variable for the selected room id
       };
-  
+
       // Iterate through existing appointments
       for (const appointment of appointments) {
         const existingAppointmentRange = {
           startDate: new Date(appointment.startDate).getTime(),
           endDate: new Date(appointment.endDate).getTime(),
         };
-  
+
         // Check for overlap, considering strict inequalities
         if (
           newAppointmentRange.startDate < existingAppointmentRange.endDate &&
@@ -79,11 +90,12 @@ const RoomPage = () => {
         }
       }
     }
-  
+
     // No conflicts, proceed with the booking
     return true;
   };
 
+  // Effect hook to fetch room data based on the roomId
   useEffect(() => {
     fetch(`/rooms/${roomId}`)
       .then((response) => {
@@ -98,6 +110,7 @@ const RoomPage = () => {
       });
   }, [roomId]);
 
+  // Function to send a booking request to the server
   const sendRequest = () => {
     fetch("/appointments", {
       method: "POST",
@@ -116,13 +129,21 @@ const RoomPage = () => {
       .catch((err) => console.log(err));
   };
 
+  // Function to handle the "Book Now" button click
   const handleBookNow = () => {
+    // Check if the user is logged in
     if (localStorage.getItem("currentUser") != null) {
       // Check for conflicts before making the booking
       if (checkConflict()) {
         // Check if the selectedCheckIn is earlier than selectedCheckOut
-        if (selectedCheckIn && selectedCheckOut && selectedCheckIn > selectedCheckOut) {
-          alert("Please select a valid date range. Check-in date cannot be later than the check-out date.")
+        if (
+          selectedCheckIn &&
+          selectedCheckOut &&
+          selectedCheckIn > selectedCheckOut
+        ) {
+          alert(
+            "Please select a valid date range. Check-in date cannot be later than the check-out date."
+          );
         } else {
           // If everything is fine, proceed with the booking
           sendRequest();
@@ -132,18 +153,19 @@ const RoomPage = () => {
         }
       }
     } else {
+      // User is not logged in, show an alert
       setSelectedCheckIn(null);
       setSelectedCheckOut(null);
-      alert("You have to login to book a room!");
+      alert("You have to log in to book a room!");
     }
   };
-  
 
+  // Function to handle image clicks and update the selectedImage state
   const handleImageClick = (imageId) => {
     setSelectedImage(imageId);
   };
-  //IMAGE HEIGHTLERI FIXED Bİ VALUE OLSUN ONLARI SEÇERKEN DİKKAT ET SONRA BURAYA MAPLERSİN ATTIĞIN İSTEKTEN
 
+  // Extracted room details from the fetched data or set to "N/A" if data is not available
   const roomStorage =
     room && room.roomStorage !== null ? room.roomStorage : "N/A";
   const roomPrice = room && room.roomPrice !== null ? room.roomPrice : "N/A";
@@ -152,8 +174,8 @@ const RoomPage = () => {
   const roomPicture =
     room && room.pictureUrl !== null ? room.pictureUrl : "N/A";
 
+  // Array to store image URLs, here only one image is considered
   const imageUrls = [roomPicture];
-
   return (
     <div
       style={{

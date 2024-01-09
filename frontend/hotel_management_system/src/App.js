@@ -14,43 +14,70 @@ import Contact from "./components/Contact/Contact";
 function App() {
   return (
     <div>
+      {/* BrowserRouter wraps the entire application */}
       <BrowserRouter>
+        {/* Navigation bar component */}
         <Navbar />
+
+        {/* Routing setup using React Router */}
         <Routes>
+          {/* Home page route */}
           <Route index element={<Home />} />
+
+          {/* User page route */}
           <Route exact path="/users/:userId" element={<User />} />
+
+          {/* Login route with conditional rendering based on user authentication */}
           <Route
             exact
             path="/auth/login"
             element={
               localStorage.getItem("currentUser") != null ? (
+                // Redirect to home if user is already authenticated
                 <Navigate to="/" />
               ) : (
                 <Login />
               )
             }
           />
+
+          {/* Signup route with conditional rendering based on user authentication */}
           <Route
             exact
             path="/auth/signup"
             element={
               localStorage.getItem("currentUser") != null ? (
+                // Redirect to home if user is already authenticated
                 <Navigate to="/" />
               ) : (
                 <Signup />
               )
             }
           />
+
+          {/* Room page route */}
           <Route exact path="/rooms/:roomId" element={<RoomPage />} />
+
+          {/* Admin page route */}
           <Route exact path="/admin" element={<AdminPage />} />
+
+          {/* User page route (repeated) - Consider removing one */}
           <Route exact path="/user" element={<User />} />
+
+          {/* Filter page route */}
           <Route exact path="/filter" element={<Filter />} />
+
+          {/* Contact page route */}
           <Route exact path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
+
+      {/* Placeholder for some content (consider updating comment) */}
       <div
         style={{ display: "flex", flexDirection: "column", minHeight: "10vh" }}
       ></div>
+
+      {/* Footer component */}
       <Footer />
     </div>
   );
